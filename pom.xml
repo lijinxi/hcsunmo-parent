@@ -15,7 +15,7 @@
 		</repository>
 	</distributionManagement>
   <properties>
-		<!-- 主要依赖库的版本定义 -->
+		<!-- 主要依赖库的版本定义 --><!-- 主要依赖库的版本定义 -->
 		<spring.version>4.1.4.RELEASE</spring.version>
 		<shiro.version>1.2.3</shiro.version>
 		<activemq.version>5.7.0</activemq.version>
