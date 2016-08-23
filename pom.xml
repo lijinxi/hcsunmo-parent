@@ -1,0 +1,708 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hc.scm</groupId>
+  <artifactId>hc-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>huaichen::hc-parent</name>
+  
+  
+  <distributionManagement>
+		<repository>
+			<id>nexus-SNAPSHOT</id>
+			<name>SNAPSHOT</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</repository>
+	</distributionManagement>
+  <properties>
+		<!-- 主要依赖库的版本定义 -->
+		<spring.version>4.1.4.RELEASE</spring.version>
+		<shiro.version>1.2.3</shiro.version>
+		<activemq.version>5.7.0</activemq.version>
+		<quartz.version>2.2.1</quartz.version>
+		<jedis.version>2.2.1</jedis.version>
+		<ehcache.version>2.6.9</ehcache.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<logback.version>1.1.2</logback.version>
+		<log4j.version>1.2.17</log4j.version>
+		<commons-lang3.version>3.3.2</commons-lang3.version>
+		<dozer.version>5.5.1</dozer.version>
+		<commons-io.version>2.4</commons-io.version>
+		<junit.version>4.11</junit.version>
+		<jersey.version>2.14</jersey.version>
+		<jaxws.version>2.1</jaxws.version>
+		<ws.rs.version>2.0.1</ws.rs.version>
+		<mysql.version>5.1.34</mysql.version>
+		<tomcat-jdbc.version>7.0.54</tomcat-jdbc.version>
+		<bonecp.version>0.8.0.RELEASE</bonecp.version>
+		<mybatis.version>3.2.8</mybatis.version>
+		<mybatis-spring.version>1.2.2</mybatis-spring.version>
+		<mybatis.generator.core.version>1.3.2</mybatis.generator.core.version>
+		<pagehelper.version>3.6.0</pagehelper.version>
+		<fastjson.version>1.2.4</fastjson.version>
+		<spring-data-redis.version>1.0.6.RELEASE</spring-data-redis.version>
+		<aspectjrt.version>1.8.0</aspectjrt.version>
+		<commons-beanutils-core.version>1.8.3</commons-beanutils-core.version>
+		<spring-aspects.version>4.1.4.RELEASE</spring-aspects.version>
+		<cglib.version>3.1</cglib.version>
+		<aspectjweaver.version>1.8.0</aspectjweaver.version>
+		<validation-api.version>1.1.0.Final</validation-api.version>
+		<hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
+		<jboss-logging.version>3.1.4.GA</jboss-logging.version>
+		<poi.version>3.9</poi.version>
+		<poi-ooxml.version>3.9</poi-ooxml.version>
+		<poi-ooxml-schemas.version>3.9</poi-ooxml-schemas.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<cas-client-core.version>3.3.2</cas-client-core.version>
+		<batik-ext.version>1.7</batik-ext.version>
+		<httpclient.version>4.1.1</httpclient.version>
+		<tp.diamond-client.version>3.0.0</tp.diamond-client.version>
+		<tp.diamond-utils.version>3.0.0</tp.diamond-utils.version>
+		<freemarker.version>2.3.19</freemarker.version>
+		<jackson-databind.version>2.1.0</jackson-databind.version>
+		<mail.version>1.4.7</mail.version>
+		<finereport.version>7.1</finereport.version>
+		<jrobin.version>1.5.9</jrobin.version>
+		<javamelody-core.version>1.53.0</javamelody-core.version>
+		<!-- Plugin的属�?-->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<targetJavaProject>${basedir}/src/main/java</targetJavaProject>
+
+	</properties>
+	
+	<!-- 设置Nexus私服 hosts 设置域名解析 nexus.belle.cn -->
+	<!--  <repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	-->
+	<!-- 预定义依赖项的version,scope与exclusions,子项目中只需定义groupId �?artifactId 即可 -->
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- springframework -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			  </dependency>
+		
+
+			<!-- connection pool -->
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-jdbc</artifactId>
+				<version>${tomcat-jdbc.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.jolbox</groupId>
+				<artifactId>bonecp</artifactId>
+				<version>${bonecp.version}</version>
+			</dependency>
+        <!-- mybatis -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			
+			
+			
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis-spring.version}</version><!-- 1.2.2 -->
+				<!-- 1.2.2 dependency spring.version is 3.1.4,our project is 4.1.4,enforcer 
+					have errors,need exclusion -->
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-jdbc</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-test</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- WEB start -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.0.1</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.0</version>
+				<exclusions>
+					<exclusion>
+						<groupId>javax.servlet</groupId>
+						<artifactId>javax.servlet-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>javax.ws.rs-api</artifactId>
+				<version>${ws.rs.version}</version>
+			</dependency>
+
+			<!-- WEB end -->
+			<!-- fastjson -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.jersey.core</groupId>
+				<artifactId>jersey-common</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.core</groupId>
+				<artifactId>jersey-client</artifactId>
+				<scope>test</scope>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.test-framework.providers</groupId>
+				<artifactId>jersey-test-framework-provider-jdk-http</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<!-- fastjson end-->
+			
+			<!-- aop -->
+			<dependency>  
+			    <groupId>org.aspectj</groupId>  
+			    <artifactId>aspectjrt</artifactId>
+		    <version>${aspectjrt.version}</version>
+			</dependency> 
+			<dependency>  
+			    <groupId>commons-beanutils</groupId>  
+			    <artifactId>commons-beanutils-core</artifactId>
+			    <version>${commons-beanutils-core.version}</version>
+			</dependency> 
+			<dependency>  
+			    <groupId>org.springframework</groupId>  
+			    <artifactId>spring-aspects</artifactId>
+			    <version>${spring-aspects.version}</version>
+			</dependency> 
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>${cglib.version}</version>
+			</dependency>
+			<dependency>
+	            <groupId>org.aspectj</groupId>
+	            <artifactId>aspectjweaver</artifactId>
+            	<version>${aspectjweaver.version}</version>
+        	</dependency>
+        	<!-- aop end-->
+			
+
+			<!-- SECURITY begin -->
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-core</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-web</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-ehcache</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<!-- SECURITY end -->
+
+			<!-- JMS begin -->
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-core</artifactId>
+				<version>${activemq.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.apache.activemq.protobuf</groupId>
+						<artifactId>activemq-protobuf</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework.osgi</groupId>
+						<artifactId>spring-osgi-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.osgi</groupId>
+						<artifactId>org.osgi.core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.fusesource.mqtt-client</groupId>
+						<artifactId>mqtt-client</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- JMS end -->
+
+			<!-- TIMER -->
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+
+			<!-- NOSQL begin -->
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${jedis.version}</version>
+			</dependency>
+
+			<dependency>  
+			    <groupId>org.springframework.data</groupId>  
+			    <artifactId>spring-data-redis</artifactId>
+			    <version>${spring-data-redis.version}</version>
+			</dependency>  
+			<!-- NOSQL end -->
+
+			<!-- 重新定义Java XPath Engine到最新版，避免旧版那些不必要的依�?-->
+			<dependency>
+				<groupId>jaxen</groupId>
+				<artifactId>jaxen</artifactId>
+				<version>1.1.4</version>
+			</dependency>
+			<!-- XML end -->
+
+			<!-- LOGGING begin -->
+			<!-- slf4j -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<!-- jcl-over-slf4j 切换logback之后,运行spring的日志都以红字输出到控制台，而不受logback控制,由于Spring的日志默认采用commons-logging,引入此依赖，可实现将commons-logging与slf4j对接，再通过logback进行了日志的统一输出 -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<!-- logback -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<!-- 与spring的集成，�?��外添加此依赖 ，用于web.xml注册监听.也可自写监听类实现logback与spring的集�?-->
+			<dependency>
+				<groupId>org.logback-extensions</groupId>
+				<artifactId>logback-ext-spring</artifactId>
+				<version>0.1.2</version>
+			</dependency>
+			<!-- log4j -->
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+
+			<!-- GENERAL UTILS begin -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
+			
+			<dependency>
+			  <groupId>org.apache.httpcomponents</groupId>
+			  <artifactId>httpclient</artifactId>
+			  <version>${httpclient.version}</version>
+			</dependency>
+
+			<!-- OTHER TOOLS begin -->
+			<!-- pojo copy -->
+			<dependency>
+				<groupId>net.sf.dozer</groupId>
+				<artifactId>dozer</artifactId>
+				<version>${dozer.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!--JAXB API -->
+			<dependency>
+				<groupId>javax.xml.ws</groupId>
+				<artifactId>jaxws-api</artifactId>
+				<version>${jaxws.version}</version>
+			</dependency>
+
+			<!--mysql -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+
+			<!-- mybatis-generator -->
+			<dependency>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-core</artifactId>
+				<version>${mybatis.generator.core.version}</version>
+			</dependency>
+
+			<!--分页插件 -->
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper</artifactId>
+				<version>${pagehelper.version}</version>
+			</dependency>
+
+			<!-- TEST begin -->
+			<!-- junit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.jersey</groupId>
+				<artifactId>jersey-bom</artifactId>
+				<version>${jersey.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+
+			<dependency>
+	            <groupId>javax.validation</groupId>
+	            <artifactId>validation-api</artifactId>
+	            <version>${validation-api.version}</version>
+    		</dependency>
+    
+	    	<dependency>
+	            <groupId>org.hibernate</groupId>
+	            <artifactId>hibernate-validator</artifactId>
+	            <version>${hibernate-validator.version}</version>
+	    	</dependency>
+	    	<dependency>
+	            <groupId>org.jboss.logging</groupId>
+	            <artifactId>jboss-logging</artifactId>
+	            <version>${jboss-logging.version}</version>
+	    	</dependency>
+	    	
+	    	<!-- freemarker -->
+	    	<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>${freemarker.version}</version>
+			</dependency> 
+			
+	        <dependency>  
+	            <groupId>com.fasterxml.jackson.core</groupId>  
+	            <artifactId>jackson-databind</artifactId>  
+	            <version>${jackson-databind.version}</version>  
+	        </dependency>  
+	    	
+	    	<!-- email -->
+	    	<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>${mail.version}</version>
+			</dependency>
+	    	
+	    	<!-- poi start -->
+	    	<dependency>
+	            <groupId>org.apache.poi</groupId>
+	            <artifactId>poi</artifactId>
+	            <version>${poi.version}</version>
+    		</dependency>
+	    	<dependency>
+	            <groupId>org.apache.poi</groupId>
+	            <artifactId>poi-ooxml</artifactId>
+	            <version>${poi-ooxml.version}</version>
+	    	</dependency>
+	    	<dependency>
+	            <groupId>org.apache.poi</groupId>
+	            <artifactId>poi-ooxml-schemas</artifactId>
+	            <version>${poi-ooxml-schemas.version}</version>
+	    	</dependency>
+	    	<!-- poi end -->
+			
+			<dependency>
+			   <groupId>commons-fileupload</groupId>
+			   <artifactId>commons-fileupload</artifactId>
+		   	   <version>${commons-fileupload.version}</version> 
+			</dependency>
+			
+			<dependency>
+			  <groupId>org.jasig.cas.client</groupId>
+			  <artifactId>cas-client-core</artifactId>
+			  <version>${cas-client-core.version}</version>
+			  <exclusions>  
+		            <exclusion>  
+		                <artifactId>commons-codec</artifactId>  
+		                <groupId>commons-codec</groupId>  
+		            </exclusion>  
+		      </exclusions>  
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-ext</artifactId>
+				<version>${batik-ext.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>com.starit.diamond</groupId>
+			  <artifactId>tp.diamond-client</artifactId>
+			  <version>${tp.diamond-client.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>com.starit.diamond.utils</groupId>
+			  <artifactId>tp.diamond-utils</artifactId>
+			   <version>${tp.diamond-utils.version}</version>
+			</dependency>
+			<!-- FineReport jar -->
+			<dependency>
+				<groupId>fr-server</groupId>
+				<artifactId>fr-server</artifactId>
+				<version>${finereport.version}</version>
+			</dependency>
+		
+			<!-- FineReport -->
+			
+			<!-- JavaMelody监控 -->
+			<dependency>
+			  <groupId>org.jrobin</groupId>
+			  <artifactId>jrobin</artifactId>
+			  <version>${jrobin.version}</version>
+			</dependency>
+			<dependency>
+			  <groupId>net.bull.javamelody</groupId>
+			  <artifactId>javamelody-core</artifactId>
+			  <version>${javamelody-core.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<!-- 插件配置 -->
+	<build>
+		<plugins>
+			<!-- compiler插件, 设定JDK版本 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!-- resource插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+
+				<!-- test插件, 仅测试名称为*Test的类, 使用支持分组测试的surefire-junit47 driver -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.16</version>
+					<configuration>
+						<includes>
+							<include>**/*Test.java</include>
+						</includes>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.surefire</groupId>
+							<artifactId>surefire-junit47</artifactId>
+							<version>2.16</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<!-- cobertura 测试覆盖率统计插插件 -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+
+				<!-- war打包插件, 设定war包名称不带版本号 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<warName>${project.artifactId}</warName>
+					</configuration>
+				</plugin>
+
+				
+				<!-- tomcat插件 -->
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+
+
+				<!-- dependency相关插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.8</version>
+				</plugin>
+
+				<!-- ant插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.7</version>
+				</plugin>
+
+				<!--yuicompressor 插件 -->
+				<plugin>
+					<groupId>net.alchim31.maven</groupId>
+					<artifactId>yuicompressor-maven-plugin</artifactId>
+					<version>1.5.1</version>
+				</plugin>
+
+				<!--replacer 插件 -->
+				<plugin>
+					<groupId>com.google.code.maven-replacer-plugin</groupId>
+					<artifactId>replacer</artifactId>
+					<version>1.5.3</version>
+				</plugin>
+
+				<!-- exec java 插件 -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.2.1</version>
+				</plugin>
+
+				<!-- mybatis-generator插件 -->
+				<plugin>
+					<groupId>org.mybatis.generator</groupId>
+					<artifactId>mybatis-generator-maven-plugin</artifactId>
+					<version>${mybatis.generator.core.version}</version>
+					<configuration>
+						<configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml
+						</configurationFile>
+						<overwrite>true</overwrite>
+						<verbose>true</verbose>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+							<version>${mysql.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.github.abel533</groupId>
+							<artifactId>mapper</artifactId>
+							<version>1.1.0</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+				  <groupId>org.apache.maven.plugins</groupId>
+				  <artifactId>maven-enforcer-plugin</artifactId>
+				  <version>1.3.1</version>
+				<executions>
+						<execution>
+							<id>enforce-banned-dependencies</id>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+							<configuration>
+								<rules>
+									<requireMavenVersion>
+										<version>3.2.9</version>
+									</requireMavenVersion>
+									<requireJavaVersion>
+										<version>1.7</version>
+									</requireJavaVersion>
+									<bannedDependencies>
+										<searchTransitive>true</searchTransitive>
+										<excludes>
+											<!-- <exclude>commons-logging</exclude> -->
+											<exclude>aspectj:aspectj*</exclude>
+											<exclude>org.springframework</exclude>
+										</excludes>
+										<includes>
+											<include>org.springframework:*:4.0.*</include>
+										</includes>
+									</bannedDependencies>
+								</rules>
+								<fail>false</fail>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
